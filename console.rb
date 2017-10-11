@@ -12,21 +12,21 @@ artist_3 = Artist.new({'name' => 'yet_another_artist'})
 
 album_1 = Album.new({
   'title' => 'that_album',
-  'year' => "2017",
+  'year' => '2017',
   'genre' => "any_genre",
   'artist_id' => artist_1.id
 })
 
 album_2 = Album.new({
   'title' => 'that_album',
-  'year' => "2017",
+  'year' => '2017',
   'genre' => "any_genre",
   'artist_id' => artist_2.id
 })
 
 album_3 = Album.new({
   'title' => 'that_album',
-  'year' => "2017",
+  'year' => '2017',
   'genre' => "any_genre",
   'artist_id' => artist_3.id
 })

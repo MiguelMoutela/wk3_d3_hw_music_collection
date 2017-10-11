@@ -1,7 +1,7 @@
 require ('PG')
 
-# require_relative('../db/sql_runner.rb')
-# require_relative('album.rb')
+require_relative('../db/sql_runner.rb')
+require_relative('album.rb')
 
 class Artist
 
@@ -28,12 +28,21 @@ class Artist
     return artist
   end
 
-  def get_albums
+  def get_albums_by_name
+    sql = "SELECT * FROM albums
+           WHERE name = $1"
+    values = [@name]
+    albums_hash = SqlRunner.run(sql, values).map {|album| Album.new(album)
+    return album
+  end
+
+
+  def get_albums_by_id
     sql = "SELECT * FROM albums
           WHERE artist_id = $1"
     values = [@id]
-    albums = SqlRunner.run(sql, values).map {|album| Album.new(album)}
-    return albums
+    albums_hash = SqlRunner.run(sql, values).map {|album| Album.new(album)}
+    return album
   end
 
   def update
