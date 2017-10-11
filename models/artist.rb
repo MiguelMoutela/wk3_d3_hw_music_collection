@@ -35,4 +35,13 @@ class Artist
     albums = SqlRunner.run(sql, values).map {|album| Album.new(album)}
     return albums
   end
+
+  def update
+    sql = "UPDATE artists
+          SET (name) = ($1)"
+    values = [@name]
+    SqlRunner.run(sql, values)
+  end
+
+
 end
