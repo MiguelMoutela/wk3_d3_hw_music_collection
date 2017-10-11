@@ -5,21 +5,22 @@ require ('PG')
 
 class Album
 
-  attr_accessor(:title, :year)
+  attr_accessor(:title, :year, :genre)
   attr_reader(:id, :artist_id)
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @title  = options['title']
     @year = options['year'].to_s
+    @genre = options['genre']
     @artist_id = options['artist_id'].to_i()
   end
 
   def save()
-    sql = "INSERT INTO albums (title, year)
-          VALUES ($1 $2)
+    sql = "INSERT INTO albums (title, year, genre)
+          VALUES ($1 $2 $3)
           RETURNING *"
-    values = [@title, @year]
+    values = [@title, @year, @genre]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
@@ -42,8 +43,8 @@ class Album
 
   def update
     sql = "UPDATE albums
-          SET (title, year) = ($1, $2, $3) WHERE id = $4"
-    values = [@title, @album, @artist_id, @id]
+          SET (title, year, genre) = ($1, $2, $3, $4) WHERE id = $5"
+    values = [@title, @album, genre, @artist_id, @id]
     SqlRunner.run(sql, values)
   end
 end
