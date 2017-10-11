@@ -32,7 +32,7 @@ class Artist
     sql = "SELECT * FROM albums
            WHERE name = $1"
     values = [@name]
-    albums_hash = SqlRunner.run(sql, values).map {|album| Album.new(album)
+    albums_hash = SqlRunner.run(sql, values).map {|album| Album.new(album)}
     return album
   end
 
